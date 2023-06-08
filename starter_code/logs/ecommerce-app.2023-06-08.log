@@ -1,0 +1,4 @@
+20:37:39.450 [main] DEBUG c.e.demo.controllers.UserController - UserController.createUser: START 
+20:37:39.451 [main] INFO  c.e.demo.controllers.UserController - UserController.createUser: test
+20:37:39.454 [main] DEBUG c.e.demo.controllers.UserController - UserController.findByUserName: START
+20:37:39.457 [main] DEBUG c.e.demo.controllers.UserController - UserController.findByUserName: START
