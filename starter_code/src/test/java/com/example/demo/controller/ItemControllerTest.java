@@ -26,7 +26,7 @@ public class ItemControllerTest {
 	@BeforeEach
 	void setUp() {
 		itemRepository = mock(ItemRepository.class);
-		itemController = new ItemController();
+		itemController = new ItemController(itemRepository);
 		setupItem();
 	}
 

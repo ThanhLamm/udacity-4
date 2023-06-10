@@ -35,7 +35,7 @@ public class UserControllerTest {
 		userRepository = mock(UserRepository.class);
 		cartRepository = mock(CartRepository.class);
 		bCryptPasswordEncoder = mock(BCryptPasswordEncoder.class);
-		userController = new UserController();
+		userController = new UserController(userRepository, cartRepository, bCryptPasswordEncoder);
 		setupUser();
 	}
 

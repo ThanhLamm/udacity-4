@@ -30,7 +30,7 @@ public class OrderControllerTest {
 	void setUp() {
 		orderRepository = mock(OrderRepository.class);
 		userRepository = mock(UserRepository.class);
-		orderController = new OrderController();
+		orderController = new OrderController(userRepository, orderRepository);
 		setUpOrder();
 	}
 

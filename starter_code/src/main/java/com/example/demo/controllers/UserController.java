@@ -21,23 +21,25 @@ import com.example.demo.model.requests.CreateUserRequest;
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
-	
-	@Autowired
-	private UserRepository userRepository;
-	
-	@Autowired
-	private CartRepository cartRepository;
-	
-	@Autowired
-	BCryptPasswordEncoder bCryptPasswordEncoder;
-	
+
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
+	private UserRepository userRepository;
+	private CartRepository cartRepository;
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	@Autowired
+	public UserController(UserRepository userRepository, CartRepository cartRepository,
+			BCryptPasswordEncoder bCryptPasswordEncoder) {
+		this.userRepository = userRepository;
+		this.cartRepository = cartRepository;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+	}
 
 	@GetMapping("/id/{id}")
 	public ResponseEntity<User> findById(@PathVariable Long id) {
 		return ResponseEntity.of(userRepository.findById(id));
 	}
-	
+
 	@GetMapping("/{username}")
 	public ResponseEntity<User> findByUserName(@PathVariable String username) {
 		log.debug("UserController.findByUserName: START");
@@ -50,7 +52,7 @@ public class UserController {
 		log.debug("UserController.findByUserName: END");
 		return ResponseEntity.ok(user);
 	}
-	
+
 	@PostMapping("/create")
 	public ResponseEntity<User> createUser(@RequestBody CreateUserRequest createUserRequest) {
 		log.debug("UserController.createUser: START ");
@@ -64,7 +66,7 @@ public class UserController {
 			log.info("Password can not less than 8 characters.");
 			log.info("UserController.createUser: END ");
 			return ResponseEntity.badRequest().build();
-		} else if (!createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())){
+		} else if (!createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())) {
 			log.info("Password does not match");
 			log.info("UserController.createUser: END ");
 			return ResponseEntity.badRequest().build();
@@ -75,5 +77,5 @@ public class UserController {
 		log.debug("UserController.createUser: END ");
 		return ResponseEntity.ok(user);
 	}
-	
+
 }

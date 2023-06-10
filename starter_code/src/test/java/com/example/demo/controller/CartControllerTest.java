@@ -34,7 +34,7 @@ public class CartControllerTest {
 		userRepository = mock(UserRepository.class);
 		cartRepository = mock(CartRepository.class);
 		itemRepository = mock(ItemRepository.class);
-		cartController = new CartController();
+		cartController = new CartController(userRepository, cartRepository, itemRepository);
 		setupCart();
 	}
 
